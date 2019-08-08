@@ -35,7 +35,7 @@ function handleMessages(e: PixelMessage) {
           transactionId,
           id,
           name,
-          price: (price * 1).toFixed(2),
+          price: price.toFixed(2),
           department,
           category,
           subcategory,
@@ -68,7 +68,7 @@ function handleMessages(e: PixelMessage) {
       const BTG360ProductEventItem = {
         id,
         name,
-        price: (price * 1).toFixed(2),
+        price: price.toFixed(2),
         department,
         category,
         subcategory,
@@ -94,7 +94,7 @@ function handleMessages(e: PixelMessage) {
           return {
             id,
             name: name.toUpperCase(),
-            price: (price * 1).toFixed(2),
+            price: price.toFixed(2),
             department,
             category,
             subcategory,
