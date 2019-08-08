@@ -22,7 +22,6 @@ function handleMessages(e: PixelMessage) {
           items
         };
         Btg360.add(BTG360SearchEvent);
-        Btg360.debug();
       }
       break;
     }
@@ -44,7 +43,6 @@ function handleMessages(e: PixelMessage) {
         }))
       };
       Btg360.add(BTG360TransactionEvent);
-      Btg360.debug();
       break;
     }
     case "vtex:productView": {
@@ -83,7 +81,6 @@ function handleMessages(e: PixelMessage) {
         items: [BTG360ProductEventItem]
       };
       Btg360.add(BTG360ProductEvent);
-      Btg360.debug();
       break;
     }
     case "vtex:addToCart": {
@@ -106,7 +103,6 @@ function handleMessages(e: PixelMessage) {
         })
       };
       Btg360.add(BTG360CartEvent);
-      Btg360.debug();
       break;
     }
   }
