@@ -2,8 +2,8 @@
 <script>
   (function(window) {
     window.__btg360 = {
-      BTGId: "{{settings.BTGId}}",
-      BTGDomain: "{{settings.BTGDomain}}"
+      BTGId: decodeURIComponent("{{settings.BTGId}}"),
+      BTGDomain: decodeURIComponent("{{settings.BTGDomain}}")
     };
   })(window);
 </script>
