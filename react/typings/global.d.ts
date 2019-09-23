@@ -1,36 +1,62 @@
-interface Event extends Event {
-  data: any;
-}
-
 interface Window extends Window {
-  __btg360: {
-    BTGId: string;
-    BTGDomain: string;
-  };
+  __btg360: BTG360Configs
+  Btg360: Btg360
 }
 
-declare module Btg360 {
-  function add(o: Btg360Event): void;
-  function debug(): void;
+interface ProfileData {
+  UserId: string
+  IsReturningUser: boolean
+  IsUserDefined: boolean
+  IsPJ: boolean
+  FirstName: string
+  LastName: string
+  Gender: null
+  Email: string
+}
+
+interface BTG360Configs {
+  BTGId: string
+  BTGDomain: string
+}
+
+interface Btg360 {
+  add(e: Btg360Event): void
+  debug(): void
 }
 
 interface Btg360Event {
-  account: string;
-  domain: string;
-  event: string;
-  items: Btg360EventItemProduct[] | Btg360EventItemKeyword[];
+  account: string
+  domain: string
+  event: string
+  items: (
+    | Btg360EventItemTransaction
+    | Btg360EventItemProduct
+    | Btg360EventItemKeyword)[]
+}
+
+interface Btg360EventItemTransaction {
+  email: string
+  transactionId: string
+  id: string
+  name: string
+  price: string
+  department: string
+  category: string
+  subcategory: string
+  brand: string
 }
 
 interface Btg360EventItemProduct {
-  id: string;
-  name: string;
-  price: string;
-  department: string;
-  category: string;
-  subcategory: string;
-  brand: string;
+  email: string
+  id: string
+  name: string
+  price: string
+  department: string
+  category: string
+  subcategory: string
+  brand: string
 }
 
 interface Btg360EventItemKeyword {
-  keyword: string;
+  keyword: string
 }

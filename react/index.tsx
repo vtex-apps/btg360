@@ -4,6 +4,7 @@ import { fetchEmail } from './helpers'
 
 async function handleMessages(e: PixelMessage) {
   const {
+    Btg360,
     __btg360: { BTGId: account, BTGDomain: domain },
     location: { pathname },
   } = window
@@ -16,7 +17,7 @@ async function handleMessages(e: PixelMessage) {
           .filter(item => item.toLocaleLowerCase())
           .map(keyword => ({ keyword }))
         const event = 'search'
-        const BTG360SearchEvent = {
+        const BTG360SearchEvent: Btg360Event = {
           account,
           domain,
           event,
@@ -29,7 +30,7 @@ async function handleMessages(e: PixelMessage) {
     case 'vtex:orderPlaced': {
       const email = await fetchEmail()
       const { transactionId, transactionProducts: items } = e.data
-      const BTG360TransactionEvent = {
+      const BTG360TransactionEvent: Btg360Event = {
         account,
         domain,
         event: 'transaction',
@@ -40,7 +41,7 @@ async function handleMessages(e: PixelMessage) {
             price,
             categoryTree: [department = '', category = '', subcategory = ''],
             brand,
-          }) => ({
+          }): Btg360EventItemTransaction => ({
             email,
             transactionId,
             id,
@@ -81,7 +82,7 @@ async function handleMessages(e: PixelMessage) {
         category = '',
         subcategory = '',
       ] = categoryTree.split('/').filter(item => item)
-      const BTG360ProductEventItem = {
+      const BTG360ProductEventItem: Btg360EventItemProduct = {
         id,
         name,
         email,
@@ -91,7 +92,7 @@ async function handleMessages(e: PixelMessage) {
         subcategory,
         brand,
       }
-      const BTG360ProductEvent = {
+      const BTG360ProductEvent: Btg360Event = {
         account,
         domain,
         event: 'product',
