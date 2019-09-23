@@ -1,7 +1,8 @@
 import { PixelMessage } from './typings/events'
 import { canUseDOM } from 'vtex.render-runtime'
+import { fetchEmail } from './helpers'
 
-function handleMessages(e: PixelMessage) {
+async function handleMessages(e: PixelMessage) {
   const {
     __btg360: { BTGId: account, BTGDomain: domain },
     location: { pathname },
@@ -26,6 +27,7 @@ function handleMessages(e: PixelMessage) {
       break
     }
     case 'vtex:orderPlaced': {
+      const email = await fetchEmail()
       const { transactionId, transactionProducts: items } = e.data
       const BTG360TransactionEvent = {
         account,
@@ -39,6 +41,7 @@ function handleMessages(e: PixelMessage) {
             categoryTree: [department = '', category = '', subcategory = ''],
             brand,
           }) => ({
+            email,
             transactionId,
             id,
             name,
@@ -71,6 +74,7 @@ function handleMessages(e: PixelMessage) {
           ],
         },
       } = e.data
+      const email = await fetchEmail()
       const [categoryTree] = categories
       const [
         department = '',
@@ -80,6 +84,7 @@ function handleMessages(e: PixelMessage) {
       const BTG360ProductEventItem = {
         id,
         name,
+        email,
         price: price.toFixed(2),
         department,
         category,
@@ -97,6 +102,7 @@ function handleMessages(e: PixelMessage) {
     }
     case 'vtex:addToCart': {
       const { items } = e.data
+      const email = await fetchEmail()
       const BTG360CartEvent = {
         account,
         domain,
@@ -109,6 +115,7 @@ function handleMessages(e: PixelMessage) {
               subcategory = '',
             ] = categoryTree.split('/')
             return {
+              email,
               id,
               name: name.toUpperCase(),
               price: price.toFixed(2),
