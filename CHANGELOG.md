@@ -14,4 +14,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Coding standards;
-- Removed unecessary type declaration;
+- Unecessary type declaration;
