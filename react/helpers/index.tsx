@@ -6,8 +6,4 @@ export async function fetchEmail(): Promise<string> {
        console.log(`Couldn't fetch logged in use email`)
     }
     return ''
-    .then<ProfileData>(res => res.json())
-    .then<string>(({ Email }) => Email)
-    .catch(_ => console.log(`Couldn't fetch logged in use email`))
-  return email || ''
 }
