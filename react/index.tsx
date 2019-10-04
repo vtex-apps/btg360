@@ -8,6 +8,7 @@ async function handleMessages(e: PixelMessage) {
     __btg360: { BTGId: account, BTGDomain: domain },
     location: { pathname },
   } = window
+
   switch (e.data.eventName) {
     case 'vtex:pageInfo': {
       if (e.data.eventType === 'internalSiteSearchView') {
@@ -54,6 +55,18 @@ async function handleMessages(e: PixelMessage) {
           })
         ),
       }
+      const BTG360ClientEvent = {
+        account,
+        domain,
+        event: 'client',
+        email,
+        items: [
+          {
+            email,
+          },
+        ],
+      }
+      Btg360.add(BTG360ClientEvent)
       Btg360.add(BTG360TransactionEvent)
       break
     }

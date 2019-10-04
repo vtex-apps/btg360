@@ -31,7 +31,12 @@ interface Btg360Event {
   items: (
     | Btg360EventItemTransaction
     | Btg360EventItemProduct
-    | Btg360EventItemKeyword)[]
+    | Btg360EventItemKeyword
+    | BTG360EventItemClient)[]
+}
+
+interface BTG360EventItemClient {
+  email: string
 }
 
 interface Btg360EventItemTransaction {

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Client event on order placed;
+
 ## [0.0.4] - 2019-09-27
 
 ### Added
