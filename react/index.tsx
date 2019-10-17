@@ -47,7 +47,7 @@ async function handleMessages(e: PixelMessage) {
             transactionId,
             id,
             name,
-            price: price.toFixed(2),
+            price: parseFloat( ( price / 100 ).toFixed(2) ),
             department,
             category,
             subcategory,
@@ -81,7 +81,7 @@ async function handleMessages(e: PixelMessage) {
             {
               sellers: [
                 {
-                  commertialOffer: { Price: price },
+                  commertialOffer: { Price: parseFloat( ( price / 100 ).toFixed(2) ) },
                 },
               ],
             },
@@ -99,7 +99,7 @@ async function handleMessages(e: PixelMessage) {
         id,
         name,
         email,
-        price: price.toFixed(2),
+        price: parseFloat( ( price / 100 ).toFixed(2) ),
         department,
         category,
         subcategory,
@@ -132,7 +132,7 @@ async function handleMessages(e: PixelMessage) {
               email,
               id,
               name: name.toUpperCase(),
-              price: price.toFixed(2),
+              price: parseFloat( ( price / 100 ).toFixed(2) ),
               department,
               category,
               subcategory,
