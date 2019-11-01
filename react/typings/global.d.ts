@@ -32,6 +32,7 @@ interface Btg360Event {
     | Btg360EventItemTransaction
     | Btg360EventItemProduct
     | Btg360EventItemKeyword)[]
+    | Array<>
 }
 
 interface Btg360EventItemTransaction {
