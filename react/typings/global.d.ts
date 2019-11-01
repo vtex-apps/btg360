@@ -35,6 +35,10 @@ interface Btg360Event {
     | Array<>
 }
 
+interface BTG360EventItemClient {
+  email: string
+}
+
 interface Btg360EventItemTransaction {
   email: string
   transactionId: string
