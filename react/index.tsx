@@ -1,6 +1,6 @@
 import { PixelMessage } from './typings/events'
 import { canUseDOM } from 'vtex.render-runtime'
-import { fetchEmail } from './helpers'
+import { fetchEmail, clientEvent } from './helpers'
 
 async function handleMessages(e: PixelMessage) {
   const {
@@ -11,6 +11,7 @@ async function handleMessages(e: PixelMessage) {
 
   switch (e.data.eventName) {
     case 'vtex:pageInfo': {
+      clientEvent(account, domain, Btg360)
       if (e.data.eventType === 'internalSiteSearchView') {
         const items = pathname
           .split('?')[0]
@@ -68,6 +69,7 @@ async function handleMessages(e: PixelMessage) {
       }
       Btg360.add(BTG360ClientEvent)
       Btg360.add(BTG360TransactionEvent)
+      clientEvent(account, domain, Btg360)
       break
     }
     case 'vtex:productView': {

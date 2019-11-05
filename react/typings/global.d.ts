@@ -31,8 +31,8 @@ interface Btg360Event {
   items: (
     | Btg360EventItemTransaction
     | Btg360EventItemProduct
-    | Btg360EventItemKeyword
-    | BTG360EventItemClient)[]
+    | Btg360EventItemKeyword)[]
+    | Array<>
 }
 
 interface BTG360EventItemClient {
