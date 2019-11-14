@@ -16,5 +16,5 @@ or
 Run the following command:
 
 ```sh
-vtex install vtex.rtbhobtg360use@0.x
+vtex install vtex.btg360@0.x
 ```

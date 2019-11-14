@@ -56,20 +56,10 @@ async function handleMessages(e: PixelMessage) {
           })
         ),
       }
-      const BTG360ClientEvent = {
-        account,
-        domain,
-        event: 'client',
-        email,
-        items: [
-          {
-            email,
-          },
-        ],
+      if (email != 'error') {
+        Btg360.add(BTG360TransactionEvent)
+        clientEvent(account, domain, Btg360)
       }
-      Btg360.add(BTG360ClientEvent)
-      Btg360.add(BTG360TransactionEvent)
-      clientEvent(account, domain, Btg360)
       break
     }
     case 'vtex:productView': {
@@ -113,7 +103,9 @@ async function handleMessages(e: PixelMessage) {
         event: 'product',
         items: [BTG360ProductEventItem],
       }
-      Btg360.add(BTG360ProductEvent)
+      if (email != 'error') {
+        Btg360.add(BTG360ProductEvent)
+      }
       break
     }
     case 'vtex:addToCart': {
@@ -143,7 +135,9 @@ async function handleMessages(e: PixelMessage) {
           }
         ),
       }
-      Btg360.add(BTG360CartEvent)
+      if (email != 'error') {
+        Btg360.add(BTG360CartEvent)
+      }
       break
     }
   }
