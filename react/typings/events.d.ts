@@ -152,7 +152,9 @@ export interface Product {
   categories: string[];
   productId: string;
   productName: string;
-  selectedSku?: string; // inconsistency
+  selectedSku: {
+    itemId: string
+  }; // inconsistency
   items: Item[];
   sku: Item;
   [key: string]: any;

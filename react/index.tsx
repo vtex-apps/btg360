@@ -65,7 +65,9 @@ async function handleMessages(e: PixelMessage) {
     case 'vtex:productView': {
       const {
         product: {
-          productId: id,
+          selectedSku: {
+            itemId
+          },
           productName: name,
           categories,
           brand,
@@ -88,7 +90,7 @@ async function handleMessages(e: PixelMessage) {
         subcategory = '',
       ] = categoryTree.split('/').filter(item => item)
       const BTG360ProductEventItem: Btg360EventItemProduct = {
-        id,
+        id: itemId,
         name,
         email,
         price: price.toFixed(2),
