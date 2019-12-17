@@ -38,7 +38,7 @@ async function handleMessages(e: PixelMessage) {
         event: 'transaction',
         items: items.map(
           ({
-            sku: id,
+            id,
             name,
             price,
             categoryTree: [department = '', category = '', subcategory = ''],
@@ -56,18 +56,15 @@ async function handleMessages(e: PixelMessage) {
           })
         ),
       }
-      if (email != 'error') {
-        Btg360.add(BTG360TransactionEvent)
-        clientEvent(account, domain, Btg360)
-      }
+
+      Btg360.add(BTG360TransactionEvent)
+      clientEvent(account, domain, Btg360)
       break
     }
     case 'vtex:productView': {
       const {
         product: {
-          selectedSku: {
-            itemId
-          },
+          productId,
           productName: name,
           categories,
           brand,
@@ -90,7 +87,7 @@ async function handleMessages(e: PixelMessage) {
         subcategory = '',
       ] = categoryTree.split('/').filter(item => item)
       const BTG360ProductEventItem: Btg360EventItemProduct = {
-        id: itemId,
+        id: productId,
         name,
         email,
         price: price.toFixed(2),
@@ -105,12 +102,12 @@ async function handleMessages(e: PixelMessage) {
         event: 'product',
         items: [BTG360ProductEventItem],
       }
-      if (email != 'error') {
-        Btg360.add(BTG360ProductEvent)
-      }
+
+      Btg360.add(BTG360ProductEvent)
       break
     }
     case 'vtex:addToCart': {
+      console.log('add to cart: ', e)
       const { items } = e.data
       const email = await fetchEmail()
       const BTG360CartEvent = {
@@ -137,9 +134,8 @@ async function handleMessages(e: PixelMessage) {
           }
         ),
       }
-      if (email != 'error') {
-        Btg360.add(BTG360CartEvent)
-      }
+
+      Btg360.add(BTG360CartEvent)
       break
     }
   }
