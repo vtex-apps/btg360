@@ -107,7 +107,6 @@ async function handleMessages(e: PixelMessage) {
       break
     }
     case 'vtex:addToCart': {
-      console.log('add to cart: ', e)
       const { items } = e.data
       const email = await fetchEmail()
       const BTG360CartEvent = {
