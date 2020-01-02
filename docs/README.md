@@ -3,6 +3,7 @@
 BTG 360 uses behavioral targert technology so you can achieve even more assertive results
 with email marketing campaigns based on browsing and / or purchasing behavior of each
 one of the registered users in your lists.
+
 For more information please visit, [AllIn](https://allinmail.com.br/) website.
 
 ## How to install
