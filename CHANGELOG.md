@@ -25,3 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Coding standards;
 - Unecessary type declaration;
+
+
+### Changed
+- Use product ID instead of SKU ID
+
+### Fixed
+- Create events without the need of being logged in
