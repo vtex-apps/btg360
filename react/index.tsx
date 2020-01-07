@@ -38,7 +38,7 @@ async function handleMessages(e: PixelMessage) {
         event: 'transaction',
         items: items.map(
           ({
-            sku: id,
+            id,
             name,
             price,
             categoryTree: [department = '', category = '', subcategory = ''],
@@ -56,18 +56,7 @@ async function handleMessages(e: PixelMessage) {
           })
         ),
       }
-      const BTG360ClientEvent = {
-        account,
-        domain,
-        event: 'client',
-        email,
-        items: [
-          {
-            email,
-          },
-        ],
-      }
-      Btg360.add(BTG360ClientEvent)
+
       Btg360.add(BTG360TransactionEvent)
       clientEvent(account, domain, Btg360)
       break
@@ -75,7 +64,7 @@ async function handleMessages(e: PixelMessage) {
     case 'vtex:productView': {
       const {
         product: {
-          productId: id,
+          productId,
           productName: name,
           categories,
           brand,
@@ -98,7 +87,7 @@ async function handleMessages(e: PixelMessage) {
         subcategory = '',
       ] = categoryTree.split('/').filter(item => item)
       const BTG360ProductEventItem: Btg360EventItemProduct = {
-        id,
+        id: productId,
         name,
         email,
         price: price.toFixed(2),
@@ -113,6 +102,7 @@ async function handleMessages(e: PixelMessage) {
         event: 'product',
         items: [BTG360ProductEventItem],
       }
+
       Btg360.add(BTG360ProductEvent)
       break
     }
@@ -143,6 +133,7 @@ async function handleMessages(e: PixelMessage) {
           }
         ),
       }
+
       Btg360.add(BTG360CartEvent)
       break
     }
