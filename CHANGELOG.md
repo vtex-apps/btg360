@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Use product ID instead of SKU ID
+
+### Fixed
+- Create events without the need of being logged in
+
 ## [0.1.0] - 2019-11-05
 
 ## [0.0.5] - 2019-10-04
@@ -25,10 +31,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Coding standards;
 - Unecessary type declaration;
-
-
-### Changed
-- Use product ID instead of SKU ID
-
-### Fixed
-- Create events without the need of being logged in
