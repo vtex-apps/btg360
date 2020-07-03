@@ -1,6 +1,6 @@
 {
   "name": "vtex.btg360",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "lint": "tsc --noEmit --pretty && tslint -c tslint.json './**/*.ts'"
   },
