@@ -1,4 +1,3 @@
-<script type="text/javascript" src="//i.btg360.com.br/btg360-2.0.1.min.js"></script>
 <script>
   (function(window) {
     window.__btg360 = {
@@ -6,4 +5,26 @@
       BTGDomain: decodeURIComponent("{{settings.BTGDomain}}")
     };
   })(window);
+
+  var btgScriptsCount=1
+  function btgReady() {
+    if (--btgScriptsCount === 0) {
+      window.__BTG_SCRIPTS_READY__ = true
+      if (typeof window.CustomEvent === 'function') {
+        window.dispatchEvent(new CustomEvent('btgReady'))
+      } else { // IE11
+        const evt = document.createEvent('CustomEvent')
+        evt.initCustomEvent('btgReady')
+        window.dispatchEvent(evt)
+      }
+    }
+  }
 </script>
+<script
+  src="//i.btg360.com.br/btg360-2.0.1.min.js"
+  type="text/javascript"
+  onerror="this.onerror=null;btgReady();"
+  onload="this.onload=null;btgReady();"
+  async
+  defer
+></script>

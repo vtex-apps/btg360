@@ -2,7 +2,23 @@ import { PixelMessage } from './typings/events'
 import { canUseDOM } from 'vtex.render-runtime'
 import { fetchEmail, clientEvent } from './helpers'
 
-async function handleMessages(e: PixelMessage) {
+const eventQueue: PixelMessage[] = []
+
+function processMessageQueue() {
+  for (const e of eventQueue) {
+    handleMessage(e)
+  }
+}
+
+function handleOrEnqueueMessage (e: PixelMessage) {
+  if (window.__BTG_SCRIPTS_READY__) {
+    handleMessage(e)
+  } else {
+    eventQueue.push(e)
+  }
+}
+
+async function handleMessage(e: PixelMessage) {
   const {
     Btg360,
     __btg360: { BTGId: account, BTGDomain: domain },
@@ -141,5 +157,6 @@ async function handleMessages(e: PixelMessage) {
 }
 
 if (canUseDOM) {
-  window.addEventListener('message', handleMessages)
+  window.addEventListener('message', handleOrEnqueueMessage)
+  window.addEventListener('btgReady', processMessageQueue)
 }
