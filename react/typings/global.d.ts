@@ -1,6 +1,7 @@
 interface Window extends Window {
   __btg360: BTG360Configs
   Btg360: Btg360
+  __BTG_SCRIPTS_READY__?: boolean
 }
 
 interface ProfileData {
